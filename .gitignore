@@ -1,2 +1,11 @@
-*.cmx[a]
+# Programs
+cgum
+cgum.opt
+
+# Binary objects
+*.[oa]
+*.cm[xaio]
+*.cmxa
+
+# Dependency file
 .depend
