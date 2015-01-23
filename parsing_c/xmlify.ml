@@ -951,9 +951,16 @@ and pp_label indent s leninfo =
       nested_end indent
   | Ast_c.Default st ->
       let strname = "Default" in
-      nested_start indent strcode strname leninfo;
-      pp_statement (indent + 1) st;
-      nested_end indent
+      let il = snd st in
+      (match il with
+	  [] ->
+            let (start,len,lines,cols,_,_) = leninfo in
+            leaf_token indent strcode strname start len lines cols
+	| _ ->
+	  nested_start indent strcode strname leninfo;
+	  pp_statement (indent + 1) st;
+	  nested_end indent
+      )
 	
 and pp_jump indent s leninfo =
   let strcode = get_strcode PP_JUMP s in
