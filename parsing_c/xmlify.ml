@@ -1018,6 +1018,10 @@ and pp_selection indent s leninfo =
   | Ast_c.If (e, st1, st2) ->
       let strname = "If" in
       nested_start indent strcode strname leninfo;
+      (* Nico: This leaf_token is to allow anchors on the If token *)
+      let (start,_,lines,cols,_,_) = leninfo in
+      leaf_token (indent + 1) strcode "IfToken" start 2 lines cols;
+      (***)
       pp_expression (indent + 1) e;
       pp_statement (indent + 1) st1;
       (match Ast_c.unwrap st2 with
