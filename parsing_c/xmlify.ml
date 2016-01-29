@@ -78,6 +78,7 @@ type entries =
 | PP_PROGRAM
 | LIST
 | STRING
+| TOKEN
 
 (* add 1 everywhere, because multiplying by 0 is not very useful (there
    are two zero values - tagged and untagged) *)
@@ -1020,6 +1021,7 @@ and pp_selection indent s leninfo =
       nested_start indent strcode strname leninfo;
       (* Nico: This leaf_token is to allow anchors on the If token *)
       let (start,_,lines,cols,_,_) = leninfo in
+      let strcode = get_strcode TOKEN s in
       leaf_token (indent + 1) strcode "IfToken" start 2 lines cols;
       (***)
       pp_expression (indent + 1) e;
