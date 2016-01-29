@@ -51,6 +51,7 @@ type entries =
 | PP_ONEENUMTYPE
 | PP_NAME
 | PP_PARAMLIST
+| PP_VPARAMS
 | PP_PARAMETERTYPE
 | PP_ATTRIBUTE
 | PP_EXPRESSION
@@ -696,7 +697,7 @@ and pp_functionType indent ft param_ii =
   (match hasdots with
       (false,_) -> ()
     | (true, list) -> 
-      let strcode = get_entry_strcode PP_PARAMLIST in
+      let strcode = get_entry_strcode PP_VPARAMS in
       let strname = "DotsParameter" in
       let (start,len,lines,cols,_,_) = get_start_len (fun x -> x) list in
       leaf_token (indent + 1) strcode strname start len lines cols  )
