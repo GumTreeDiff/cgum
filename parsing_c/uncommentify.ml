@@ -76,7 +76,7 @@ type min =
   | Ctx
 
 type token2 =
-  | T2 of Parser_c.token * min 
+  | T2 of Parser_c.token * min
         * int option (* orig index, abstracting away comments and space *)
         * unit option
   | Fake2 of Ast_c.info * min
@@ -90,7 +90,7 @@ type token3 =
 
 
 (* similar to the tech in parsing_hack *)
-type token_extended = 
+type token_extended =
   { tok2 : token2;
     str  : string;
     idx  : int option; (* to know if 2 tokens were consecutive in orig file *)
@@ -189,8 +189,8 @@ let remove_useless_fakeInfo_struct program =
       | Ast_c.InitList args, ii ->
         (match ii with
         | [_;_] -> ini
-        | i1 :: i2 :: iicommaopt :: tl when 
-            (Ast_c.is_fake iicommaopt) -> 
+        | i1 :: i2 :: iicommaopt :: tl when
+            (Ast_c.is_fake iicommaopt) ->
           (* sometimes the guy put a normal iicommaopt *)
           Ast_c.InitList args, (i1 :: i2 :: tl)
         | ii -> Ast_c.InitList args, ii
@@ -300,7 +300,7 @@ let expand_mcode toks =
 
       let optindex =
         if TH.is_origin tok && not (TH.is_real_comment tok)
-        then 
+        then
           begin
             incr index;
             Some !index
@@ -403,7 +403,7 @@ let print_all_tokens2 pr xs =
       let newkind = kind_of_token2 t in
       if newkind =*= !current_kind
       then pr (str_of_token2 t)
-      else 
+      else
         begin
           pr (end_mark);
           pr (start_mark newkind);
@@ -412,13 +412,13 @@ let print_all_tokens2 pr xs =
         end
     );
   else
-    let to_whitespace s = 
-      let r = String.copy s in
+    let to_whitespace s =
+      let r = String.copy s in (* TODO check depreciation warning *)
       for i = 1 to String.length r do
         let c = String.get r (i-1) in
         match c with
         | ' ' | '\t' | '\r' | '\n' -> ()
-        | _ -> String.set r (i-1) ' '
+        | _ -> Bytes.set (Bytes.of_string r) (i-1) ' ' (* TODO is this efficient? *)
       done;
       r in
     let hiding_level = ref 0 in
@@ -513,7 +513,7 @@ let pp_program2 xs outfile  =
 
         (* in theory here could reparse and rework the ast! or
          * apply some SP. Not before cos julia may have generated
-         * not parsable file. Need do unparsing_tricks call before 
+         * not parsable file. Need do unparsing_tricks call before
 	 * being ready to reparse. *)
         print_all_tokens2 pr toks;
 

@@ -1132,7 +1132,7 @@ val do_in_fork : (unit -> unit) -> int
 
 val mkdir: ?mode:Unix.file_perm -> string -> unit
 
-val read_file : filename -> string
+val read_file : filename -> bytes
 val write_file : file:filename -> string -> unit
 
 val filesize : filename -> int
@@ -2057,4 +2057,3 @@ class ['a] olist :
   end
 
 val typing_sux_test : unit -> unit
-
