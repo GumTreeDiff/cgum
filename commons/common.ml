@@ -1220,7 +1220,7 @@ let (+!>) refo f = refo := f !refo
 
 let ($)     f g x = g (f x)
 let compose f g x = f (g x)
-(* dont work :( let ( ° ) f g x = f(g(x)) *)
+(* dont work :( let ( ï¿½ ) f g x = f(g(x)) *)
 
 (* trick to have something similar to the   1 `max` 4   haskell infix notation.
    by Keisuke Nakano on the caml mailing list.
@@ -3388,7 +3388,7 @@ let cache_computation_robust2
 	let _ = Sys.command
 	    (Printf.sprintf "mkdir -p %s" (Filename.dirname file_cache)) in
 	(file_cache,dependencies_cache) in
-  
+
   let dependencies =
     (* could do md5sum too *)
     ((file::need_no_changed_files) +> List.map (fun f -> f, filemtime f),
@@ -3722,7 +3722,7 @@ let _ = example (drop 3 [1;2;3;4] =*= [4])
 
 let rec drop_while p = function
   | [] -> []
-  | x::xs -> if p x then drop_while p xs else x::xs	
+  | x::xs -> if p x then drop_while p xs else x::xs
 
 
 let rec drop_until p xs =
@@ -5435,7 +5435,7 @@ let parserCommon lexbuf parserer lexer =
     let result = parserer lexer lexbuf in
     result
   with Parsing.Parse_error ->
-    print_string "buf: "; print_string lexbuf.Lexing.lex_buffer;
+    print_string "buf: "; print_bytes lexbuf.Lexing.lex_buffer;
     print_string "\n";
     print_string "current: "; print_int lexbuf.Lexing.lex_curr_pos;
     print_string "\n";
@@ -6230,6 +6230,3 @@ let typing_sux_test () =
 
 (* let (test: 'a osetb -> 'a ocollection) = fun o -> (o :> 'a ocollection) *)
 (* let _ = test (new osetb (Setb.empty)) *)
-
-
-
