@@ -11,7 +11,7 @@ brew install ocaml ocaml-findlib ocaml-num ocamlbuild
 make
 ```
 
-### Ubuntu
+### Ubuntu
 
 ```
 sudo apt install ocaml
