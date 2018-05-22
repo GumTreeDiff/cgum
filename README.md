@@ -1,6 +1,6 @@
 # cgum C parser
 
-This project is a parser that converts C files to a XML format.
+This project is a parser that converts C files to a XML format. It is mainly used as a backend in GumTree diff tool.
 
 ## Installation
 
@@ -8,5 +8,12 @@ This project is a parser that converts C files to a XML format.
 
 ```
 brew install ocaml ocaml-findlib ocaml-num ocamlbuild
+make
+```
+
+### Ubuntu
+
+```
+sudo apt install ocaml
 make
 ```
