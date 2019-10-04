@@ -159,15 +159,15 @@ let protect s =
 let nested_start indent index typelabel (start,len,lines,cols,linee,cole) =
   print_indent indent;
   Printf.printf
-    "<tree type = \"%d\" typeLabel = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\">\n"
-    index typelabel start len lines cols linee cole
+    "<tree type = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\">\n"
+    typelabel start len lines cols linee cole
 
 let nested_label_start indent index typelabel ty
     (start,len,lines,cols,linee,cole) =
   print_indent indent;
   Printf.printf
-    "<tree type = \"%d\" label = \"%s\" typeLabel = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\">\n"
-    index ty typelabel start len lines cols linee cole
+    "<tree type = \"%s\" label = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\">\n"
+    typelabel ty start len lines cols linee cole
 
 let nested_start_list indent lineinfo =
   let index = get_entry_strcode LIST in
@@ -181,8 +181,8 @@ let nested_end indent =
 let leaf indent index typelabel (start,len,lines,cols,linee,cole) str =
   print_indent indent;
   Printf.printf
-    "<tree type = \"%d\" label = \"%s\" typeLabel = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\"/>\n"
-    index (protect str) typelabel start len lines cols linee cole
+    "<tree type = \"%s\" label = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\"/>\n"
+    typelabel (protect str) start len lines cols linee cole
 
 let leaf_token indent index typelabel start len lines cols =
   let str = "" in
