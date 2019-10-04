@@ -159,7 +159,7 @@ let protect s =
 let nested_start indent index typelabel (start,len,lines,cols,linee,cole) =
   print_indent indent;
   Printf.printf
-    "<tree type = \"%d\" label = \"\" typeLabel = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\">\n"
+    "<tree type = \"%d\" typeLabel = \"%s\" pos = \"%d\" length = \"%d\" line_before = \"%d\" col_before = \"%d\" line_after = \"%d\" col_after = \"%d\">\n"
     index typelabel start len lines cols linee cole
 
 let nested_label_start indent index typelabel ty
