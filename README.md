@@ -14,6 +14,6 @@ make
 ### Ubuntu
 
 ```
-sudo apt-get install ocaml ocaml-native-compilers
+sudo apt-get install build-essential ocaml libnum-ocaml-dev
 make
 ```
